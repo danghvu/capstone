@@ -5,6 +5,7 @@ from Cython.Distutils import build_ext
 VERSION = '2.0'
 
 ext_modules = [ Extension("capstone.capstone", ["capstone/capstone.py"]),
+    Extension("capstone.ccapstone", sources=["capstone/ccapstone.pyx"], libraries=["capstone"]),
     Extension("capstone.arm", ["capstone/arm.py"]),
     Extension("capstone.arm_const", ["capstone/arm_const.py"]),
     Extension("capstone.arm64", ["capstone/arm64.py"]),

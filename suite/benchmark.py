@@ -4,6 +4,9 @@
 
 from capstone import *
 
+#temp
+from capstone.ccapstone import CCs
+
 from time import time
 from random import randint
 
@@ -23,6 +26,8 @@ def cs(md, data):
 md = Cs(CS_ARCH_X86, CS_MODE_32)
 md.detail = False
 
+md2 = CCs(CS_ARCH_X86, CS_MODE_32)
+
 # warm up few times
 for i in xrange(3):
     data = random_str(128)
@@ -30,12 +35,18 @@ for i in xrange(3):
 
 # start real benchmark
 c_t = 0
+c_t2 = 0
 for i in xrange(10000):
     code = random_str(128)
-    
+
     t1 = time()
     cs(md, code)
     c_t += time() - t1
 
+    t1 = time()
+    cs(md2, code)
+    c_t2 += time() - t1
+
 
 print "Capstone:", c_t, "seconds"
+print "Capstone 2:", c_t2, "seconds"
