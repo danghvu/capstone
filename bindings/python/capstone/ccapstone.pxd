@@ -26,6 +26,9 @@ cdef extern from "<capstone/capstone.h>":
   ctypedef enum cs_err:
     pass
 
+  ctypedef enum cs_opt_type:
+    pass
+
   unsigned int cs_version(int *major, int *minor)
 
   bool cs_support(int arch)
@@ -41,6 +44,8 @@ cdef extern from "<capstone/capstone.h>":
 		uint64_t address,
 		size_t count,
 		cs_insn **insn)
+
+  cs_err cs_option(csh handle, cs_opt_type type, size_t value)
 
   void cs_free(cs_insn *insn, size_t count)
 
